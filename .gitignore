@@ -1,0 +1,5 @@
+*~
+bazel-bin
+bazel-hello-monorepo-bazel-example
+bazel-out
+bazel-testlogs
