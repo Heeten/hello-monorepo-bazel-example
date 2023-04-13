@@ -16,3 +16,11 @@ load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_regi
 rules_rust_dependencies()
 
 rust_register_toolchains(edition = "2021")
+
+### Cargo raze deps
+###
+load("//third_party/rust:crates.bzl", "raze_fetch_remote_crates")
+
+# Note that this method's name depends on your gen_workspace_prefix setting.
+# `raze` is the default prefix.
+raze_fetch_remote_crates()
