@@ -1,4 +1,7 @@
+use log::trace;
+
 pub fn summation_f64(values: &[f64]) -> f64 {
+    trace!("summation_f64");
     values.iter().sum()
 }
 

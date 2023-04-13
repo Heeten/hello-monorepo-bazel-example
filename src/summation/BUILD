@@ -20,7 +20,7 @@ rust_library(
         "f64.rs",
         "u32.rs",
     ],
-    deps = [],
+    deps = ["//third_party/rust:log"],
 )
 
 rust_test(
