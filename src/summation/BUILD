@@ -1,5 +1,4 @@
-# This tells bazel to load the rust_binary rule from the rules_rust package
-load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library")
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library", "rust_test")
 
 rust_binary(
     #We are going to call the target/binary summation
@@ -19,5 +18,11 @@ rust_library(
         "f64.rs",
         "u32.rs",
     ],
+    deps = [],
+)
+
+rust_test(
+    name = "lib_test",
+    crate = ":src_summation",
     deps = [],
 )
