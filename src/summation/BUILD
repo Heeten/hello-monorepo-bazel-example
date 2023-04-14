@@ -8,6 +8,7 @@ rust_binary(
     #Any libraries/crates it depends on, for now we'll leave this blank
     deps = [
         ":src_summation",
+        "//third_party/rust:clap",
     ],
     #The crate_root file, this would default to main.rs but we put it in for clarity
     crate_root = "main.rs",

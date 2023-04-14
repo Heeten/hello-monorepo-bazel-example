@@ -33,3 +33,9 @@ targets = [
 genmode = "Remote"
 
 default_gen_buildrs = true
+
+[package.metadata.raze.crates.clap.'*']
+compile_data_attr = "glob([\"**/*.md\"])"
+
+[package.metadata.raze.crates.clap_builder.'*']
+compile_data_attr = "glob([\"**/*.md\"])"
