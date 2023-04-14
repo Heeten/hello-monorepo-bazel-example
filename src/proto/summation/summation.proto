@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package src_proto_summation;
+
+service Summation {
+  rpc ComputeSumF64(ComputeSumF64Request) returns (ComputeSumF64Response);
+}
+
+message ComputeSumF64Request {
+  repeated double value = 1;
+}
+
+message ComputeSumF64Response {
+  double sum = 1;
+}
