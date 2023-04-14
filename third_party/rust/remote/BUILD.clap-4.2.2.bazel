@@ -39,6 +39,7 @@ rust_binary(
     crate_features = [
         "color",
         "default",
+        "derive",
         "error-context",
         "help",
         "std",
@@ -49,6 +50,9 @@ rust_binary(
     data = [],
     compile_data = glob(["**/*.md"]),
     edition = "2021",
+    proc_macro_deps = [
+        "@raze__clap_derive__4_2_0//:clap_derive",
+    ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -62,6 +66,7 @@ rust_binary(
     deps = [
         ":clap",
         "@raze__clap_builder__4_2_2//:clap_builder",
+        "@raze__once_cell__1_17_1//:once_cell",
     ],
 )
 
@@ -181,6 +186,7 @@ rust_library(
     crate_features = [
         "color",
         "default",
+        "derive",
         "error-context",
         "help",
         "std",
@@ -191,6 +197,9 @@ rust_library(
     data = [],
     compile_data = glob(["**/*.md"]),
     edition = "2021",
+    proc_macro_deps = [
+        "@raze__clap_derive__4_2_0//:clap_derive",
+    ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -203,5 +212,6 @@ rust_library(
     # buildifier: leave-alone
     deps = [
         "@raze__clap_builder__4_2_2//:clap_builder",
+        "@raze__once_cell__1_17_1//:once_cell",
     ],
 )

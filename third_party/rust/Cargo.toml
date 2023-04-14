@@ -8,7 +8,7 @@ path = "fake_lib.rs"
 
 [dependencies]
 log = "0.4.17"
-clap = "4.2.2"
+clap = { version = "4.2.2", features = ["derive"] }
 
 [package.metadata.raze]
 # The path at which to write output files.
@@ -38,4 +38,7 @@ default_gen_buildrs = true
 compile_data_attr = "glob([\"**/*.md\"])"
 
 [package.metadata.raze.crates.clap_builder.'*']
+compile_data_attr = "glob([\"**/*.md\"])"
+
+[package.metadata.raze.crates.clap_derive.'*']
 compile_data_attr = "glob([\"**/*.md\"])"
