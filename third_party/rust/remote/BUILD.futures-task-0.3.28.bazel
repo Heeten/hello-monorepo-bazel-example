@@ -26,7 +26,7 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0 OR (Apache-2.0 OR MIT)"
+    "notice",  # MIT from expression "MIT OR Apache-2.0"
 ])
 
 # Generated Targets
@@ -38,18 +38,12 @@ load(
 )
 
 cargo_build_script(
-    name = "rustix_build_script",
+    name = "futures_task_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
     crate_features = [
-        "default",
-        "fs",
-        "io-lifetimes",
-        "libc",
-        "std",
-        "termios",
-        "use-libc-auxv",
+        "alloc",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
@@ -61,34 +55,17 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.37.11",
+    version = "0.3.28",
     visibility = ["//visibility:private"],
     deps = [
-    ] + selects.with_or({
-        (
-            "@rules_rust//rust/platform:x86_64-unknown-linux-gnu",
-        ): [
-            "@raze__linux_raw_sys__0_3_1//:linux_raw_sys",
-        ],
-        "//conditions:default": [],
-    }),
+    ],
 )
 
-# Unsupported target "mod" with type "bench" omitted
-
 rust_library(
-    name = "rustix",
+    name = "futures_task",
     srcs = glob(["**/*.rs"]),
-    aliases = {
-    },
     crate_features = [
-        "default",
-        "fs",
-        "io-lifetimes",
-        "libc",
-        "std",
-        "termios",
-        "use-libc-auxv",
+        "alloc",
     ],
     crate_root = "src/lib.rs",
     data = [],
@@ -98,22 +75,12 @@ rust_library(
     ],
     tags = [
         "cargo-raze",
-        "crate-name=rustix",
+        "crate-name=futures-task",
         "manual",
     ],
-    version = "0.37.11",
+    version = "0.3.28",
     # buildifier: leave-alone
     deps = [
-        ":rustix_build_script",
-        "@raze__bitflags__1_3_2//:bitflags",
-        "@raze__io_lifetimes__1_0_10//:io_lifetimes",
-    ] + selects.with_or({
-        (
-            "@rules_rust//rust/platform:x86_64-unknown-linux-gnu",
-        ): [
-            "@raze__libc__0_2_141//:libc",
-            "@raze__linux_raw_sys__0_3_1//:linux_raw_sys",
-        ],
-        "//conditions:default": [],
-    }),
+        ":futures_task_build_script",
+    ],
 )

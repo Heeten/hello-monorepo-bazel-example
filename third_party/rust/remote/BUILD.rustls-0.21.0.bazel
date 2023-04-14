@@ -26,7 +26,7 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0 OR (Apache-2.0 OR MIT)"
+    "notice",  # Apache-2.0 from expression "Apache-2.0 OR (ISC OR MIT)"
 ])
 
 # Generated Targets
@@ -38,22 +38,18 @@ load(
 )
 
 cargo_build_script(
-    name = "rustix_build_script",
+    name = "rustls_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
     crate_features = [
-        "default",
-        "fs",
-        "io-lifetimes",
-        "libc",
-        "std",
-        "termios",
-        "use-libc-auxv",
+        "log",
+        "logging",
+        "tls12",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
-    edition = "2018",
+    edition = "2021",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -61,59 +57,57 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.37.11",
+    version = "0.21.0",
     visibility = ["//visibility:private"],
     deps = [
-    ] + selects.with_or({
-        (
-            "@rules_rust//rust/platform:x86_64-unknown-linux-gnu",
-        ): [
-            "@raze__linux_raw_sys__0_3_1//:linux_raw_sys",
-        ],
-        "//conditions:default": [],
-    }),
+    ],
 )
 
-# Unsupported target "mod" with type "bench" omitted
+# Unsupported target "benchmarks" with type "bench" omitted
+
+# Unsupported target "bench" with type "example" omitted
+
+# Unsupported target "bogo_shim" with type "example" omitted
 
 rust_library(
-    name = "rustix",
+    name = "rustls",
     srcs = glob(["**/*.rs"]),
     aliases = {
+        "@raze__rustls_webpki__0_100_1//:rustls_webpki": "webpki",
     },
     crate_features = [
-        "default",
-        "fs",
-        "io-lifetimes",
-        "libc",
-        "std",
-        "termios",
-        "use-libc-auxv",
+        "log",
+        "logging",
+        "tls12",
     ],
     crate_root = "src/lib.rs",
     data = [],
-    edition = "2018",
+    edition = "2021",
     rustc_flags = [
         "--cap-lints=allow",
     ],
     tags = [
         "cargo-raze",
-        "crate-name=rustix",
+        "crate-name=rustls",
         "manual",
     ],
-    version = "0.37.11",
+    version = "0.21.0",
     # buildifier: leave-alone
     deps = [
-        ":rustix_build_script",
-        "@raze__bitflags__1_3_2//:bitflags",
-        "@raze__io_lifetimes__1_0_10//:io_lifetimes",
-    ] + selects.with_or({
-        (
-            "@rules_rust//rust/platform:x86_64-unknown-linux-gnu",
-        ): [
-            "@raze__libc__0_2_141//:libc",
-            "@raze__linux_raw_sys__0_3_1//:linux_raw_sys",
-        ],
-        "//conditions:default": [],
-    }),
+        ":rustls_build_script",
+        "@raze__log__0_4_17//:log",
+        "@raze__ring__0_16_20//:ring",
+        "@raze__rustls_webpki__0_100_1//:rustls_webpki",
+        "@raze__sct__0_7_0//:sct",
+    ],
 )
+
+# Unsupported target "api" with type "test" omitted
+
+# Unsupported target "bogo" with type "test" omitted
+
+# Unsupported target "client_cert_verifier" with type "test" omitted
+
+# Unsupported target "key_log_file_env" with type "test" omitted
+
+# Unsupported target "server_cert_verifier" with type "test" omitted
