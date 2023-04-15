@@ -40,6 +40,15 @@ alias(
 )
 
 alias(
+    name = "tokio",
+    actual = "@raze__tokio__1_27_0//:tokio",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
     name = "tonic",
     actual = "@raze__tonic__0_9_1//:tonic",
     tags = [

@@ -12,6 +12,7 @@ log = "0.4.17"
 prost = "0.11.6"
 tonic = { version = "0.9.1", features = ["tls", "tls-roots", "default"] }
 tonic-build = "0.9.1"
+tokio = "1.27"
 
 [package.metadata.raze]
 # The path at which to write output files.
