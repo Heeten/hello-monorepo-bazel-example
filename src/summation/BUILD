@@ -22,6 +22,7 @@ rust_library(
         "u32.rs",
     ],
     deps = ["//third_party/rust:log"],
+    visibility = ["//src/services/summation:__pkg__"],
 )
 
 rust_test(
