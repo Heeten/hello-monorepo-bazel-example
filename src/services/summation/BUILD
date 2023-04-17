@@ -1,4 +1,5 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary")
+load("@io_bazel_rules_docker//rust:image.bzl", "rust_image")
 
 rust_binary(
     name = "server",
@@ -12,4 +13,9 @@ rust_binary(
         "//third_party/rust:tokio",
         "//third_party/rust:tonic",
     ],
+)
+
+rust_image(
+    name = "server_image",
+    binary = ":server",
 )
